@@ -14,9 +14,20 @@ public class GameManager : MonoBehaviour
     public int counter;
     [SerializeField] Transform man;
     public Transform final;
+    [SerializeField] GameObject FailPanel;
     private void Awake()
     {
         Instance = this;
+        GameOverEvent.AddListener(InvokedFail);
+    }
+    
+    void OpenFailPanel()
+    {
+        FailPanel.SetActive(true); 
+    }
+    void InvokedFail()
+    {
+        Invoke("OpenFailPanel",2f);
     }
 
     public void DisableRigs()
@@ -39,8 +50,8 @@ public class GameManager : MonoBehaviour
     public void TransformDuzelt()
     {
         man.localEulerAngles = new Vector3(90, 0, 0);
-        man.localPosition += Vector3.up * 2f;
-        man.localPosition = new Vector3(man.localPosition.x, man.localPosition.y, 6);
+        man.localPosition += Vector3.up * 4.5f;
+        man.localPosition = new Vector3(man.localPosition.x, man.localPosition.y, 5.5f);
     }
     private void Update()
     {

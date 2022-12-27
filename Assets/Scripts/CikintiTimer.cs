@@ -5,7 +5,7 @@ using UnityEngine;
 public class CikintiTimer : MonoBehaviour
 {
     public bool isCounting;
-    [SerializeField] float timer;
+    public float timer;
     [SerializeField] float timerr;
     [SerializeField] TextMesh textMesh;
     public bool isEnded;

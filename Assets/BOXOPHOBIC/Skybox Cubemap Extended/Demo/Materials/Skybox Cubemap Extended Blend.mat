@@ -96,11 +96,11 @@ Material:
     - _EnableRotation: 0
     - _Exposure: 1
     - _Float0: -0.21
-    - _FogFill: 0.577
-    - _FogHeight: 0.212
-    - _FogIntensity: 1
+    - _FogFill: 0.253
+    - _FogHeight: 0
+    - _FogIntensity: 0.842
     - _FogMessage: 0
-    - _FogPosition: -0.4
+    - _FogPosition: -5
     - _FogSmoothness: 0.01
     - _Fogg: 1
     - _GlossMapScale: 1

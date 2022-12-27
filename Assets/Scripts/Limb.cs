@@ -44,7 +44,8 @@ public class Limb : MonoBehaviour
         {
             GameManager.Instance.counter++;
             isInFinal = false;
-            transform.position = new Vector3(transform.position.x, GameManager.Instance.final.position.y+0.5f,0);
+            //  transform.position = new Vector3(transform.position.x, GameManager.Instance.final.position.y+0.5f,0);
+            transform.position = new Vector3(finalTransform.position.x, finalTransform.position.y, 0);
         }
         else
             GameManager.Instance.GameOverEvent?.Invoke();
@@ -80,13 +81,19 @@ public class Limb : MonoBehaviour
         float z = transform.position.z - Camera.main.transform.position.z;
         Vector3 v = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, 0));
         spriteRenderer.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(v.x, v.y, z * 0.75f));
-        //if (Input.GetMouseButtonUp(0))
-        //{
-
-
-
-        //}
+        if (holdingTarget != null)
+        {
+            spriteRenderer.color = LerpedColor(holdingTarget.timer * 0.1f);
+        }
+       
     }
+    Color LerpedColor(float t)
+    {
+        Color a = Color.Lerp(Color.black, Color.red, t);
+        Color b = Color.Lerp(Color.red,Color.green, t);
+        return Color.Lerp(a, b, t);
+    }
+    Transform finalTransform;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Cikinti"))
@@ -99,7 +106,7 @@ public class Limb : MonoBehaviour
         else if(other.gameObject.CompareTag("final"))
         {
             isInFinal = true;
-            
+            finalTransform = other.transform;
         }
     }
     private void OnTriggerExit(Collider other)
