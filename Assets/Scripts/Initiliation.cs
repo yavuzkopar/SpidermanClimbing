@@ -7,11 +7,20 @@ public class Initiliation : MonoBehaviour
 {
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("LastScene"))
-        {
-            SceneManager.LoadScene(PlayerPrefs.GetInt("LastScene"));
-        }
-        else
+        int a;
+        string level;
+        //if (PlayerPrefs.HasKey("LastScene"))
+        //{
+        //    SceneManager.LoadScene(PlayerPrefs.GetInt("LastScene"));
+        //    a = PlayerPrefs.GetInt("LastScene");
+        //    a = a - 1;
+        //}
+       
             SceneManager.LoadScene(1);
+            a = 0;
+        
+
+        level = a.ToString();
+        TinySauce.OnGameStarted("1");
     }
 }

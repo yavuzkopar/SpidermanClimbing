@@ -1285,6 +1285,14 @@ PrefabInstance:
       propertyPath: hedef
       value: 
       objectReference: {fileID: 1045931855}
+    - target: {fileID: 3472765505948570372, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472765506202264878, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3472765506614001564, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
       propertyPath: m_Name
       value: Core
@@ -1332,6 +1340,22 @@ PrefabInstance:
     - target: {fileID: 3472765506614001567, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472765506637870764, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472765506637870764, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472765506637870764, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472765506637870764, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SceneManagerr, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2371c8d5649cd94bba425b9c60d3ff3, type: 3}
