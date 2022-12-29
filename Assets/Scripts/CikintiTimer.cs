@@ -7,7 +7,7 @@ public class CikintiTimer : MonoBehaviour
     public bool isCounting;
     public float timer;
     [SerializeField] float timerr;
-    [SerializeField] TextMesh textMesh;
+  //  [SerializeField] TextMesh textMesh;
     public bool isEnded;
     public bool isTaken;
     private void Update()
@@ -22,7 +22,7 @@ public class CikintiTimer : MonoBehaviour
         {
             timer -= Time.deltaTime;
             float rounded = Mathf.RoundToInt(timer);
-            textMesh.text = rounded.ToString();
+         //   textMesh.text = rounded.ToString();
             return;
         }
         else
@@ -34,8 +34,8 @@ public class CikintiTimer : MonoBehaviour
     }
     public void SetTextMeshEnable(bool v)
     {
-        textMesh.gameObject.SetActive(v);
+      //  textMesh.gameObject.SetActive(v);
         timer = timerr;
-        textMesh.text = timerr.ToString();
+      //  textMesh.text = timerr.ToString();
     }
 }

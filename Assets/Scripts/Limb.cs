@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Limb : MonoBehaviour
 {
@@ -20,11 +21,12 @@ public class Limb : MonoBehaviour
     float x = 0;
     float y = 0;
     RaycastHit hit;
-    SpriteRenderer spriteRenderer;
+  //  SpriteRenderer spriteRenderer;
+    [SerializeField] Image image;
 
     private void Start()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+      //  spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     private void OnMouseUp()
     {
@@ -38,7 +40,10 @@ public class Limb : MonoBehaviour
                 GameManager.Instance.GameOverEvent?.Invoke();
             }
             else
+            {
+                GameManager.Instance.Star(transform);
                 holdingTarget.isTaken = true;
+            }
         }
         else if (isInFinal)
         {
@@ -80,10 +85,13 @@ public class Limb : MonoBehaviour
     {
         float z = transform.position.z - Camera.main.transform.position.z;
         Vector3 v = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, 0));
-        spriteRenderer.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(v.x, v.y, z * 0.75f));
+        image.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+     //   spriteRenderer.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(v.x, v.y, z * 0.75f));
         if (holdingTarget != null)
         {
-            spriteRenderer.color = LerpedColor(holdingTarget.timer * 0.1f);
+        //    spriteRenderer.color = LerpedColor(holdingTarget.timer * 0.1f);
+            image.color = LerpedColor(holdingTarget.timer * 0.1f);
+            image.fillAmount = 1-(1-(holdingTarget.timer * 0.1f));
         }
        
     }

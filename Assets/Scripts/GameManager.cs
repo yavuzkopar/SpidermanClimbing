@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.Animations.Rigging;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,12 +17,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform man;
     public Transform final;
     [SerializeField] GameObject FailPanel;
+    public StarMove[] starMove;
+    int starIndex;
+
+    public int score;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] GameObject circlesParent;
     private void Awake()
     {
         Instance = this;
         GameOverEvent.AddListener(InvokedFail);
+        score = PlayerPrefs.GetInt("Score");
+        ScoreUp(0);
+
     }
-    
+    public void SetScore()
+    {
+        PlayerPrefs.SetInt("Score", score);
+    }
     void OpenFailPanel()
     {
         FailPanel.SetActive(true); 
@@ -29,7 +43,14 @@ public class GameManager : MonoBehaviour
     {
         Invoke("OpenFailPanel",2f);
     }
-
+    public void InvokedSprties()
+    {
+        Invoke("InvokedSprties2", 3f);
+    }
+    public void InvokedSprties2()
+    {
+        circlesParent.SetActive(true);
+    }
     public void DisableRigs()
     {
         foreach (var item in rigs)
@@ -61,5 +82,17 @@ public class GameManager : MonoBehaviour
             Debug.Log("Wind");
             counter++;
         }
+    }
+    public void Star(Transform transform)
+    {
+        if (starIndex % starMove.Length == 0) starIndex = 0;
+        starMove[starIndex].hedef = transform;
+        starMove[starIndex].gameObject.SetActive(true);
+        starIndex++;
+    }
+    public void ScoreUp(int plus)
+    {
+        score += plus;
+        scoreText.text = score.ToString();
     }
 }
