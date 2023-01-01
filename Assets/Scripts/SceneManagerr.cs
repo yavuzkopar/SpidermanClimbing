@@ -18,4 +18,8 @@ public class SceneManagerr : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void ReturnToFirstScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

@@ -22,11 +22,13 @@ public class Limb : MonoBehaviour
     float y = 0;
     RaycastHit hit;
   //  SpriteRenderer spriteRenderer;
-    [SerializeField] Image image;
+    Transform image;
+    [SerializeField] Image imageChild;
 
     private void Start()
     {
-      //  spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        //  spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        image = imageChild.transform.parent;
     }
     private void OnMouseUp()
     {
@@ -90,8 +92,8 @@ public class Limb : MonoBehaviour
         if (holdingTarget != null)
         {
         //    spriteRenderer.color = LerpedColor(holdingTarget.timer * 0.1f);
-            image.color = LerpedColor(holdingTarget.timer * 0.1f);
-            image.fillAmount = 1-(1-(holdingTarget.timer * 0.1f));
+          //  image.color = LerpedColor(holdingTarget.timer * 0.1f);
+            imageChild.fillAmount =1- holdingTarget.timer * 0.1f;
         }
        
     }

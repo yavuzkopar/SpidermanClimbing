@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public int score;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] GameObject circlesParent;
+    [SerializeField] GameObject cikintiParent;
     private void Awake()
     {
         Instance = this;
@@ -37,7 +38,8 @@ public class GameManager : MonoBehaviour
     }
     void OpenFailPanel()
     {
-        FailPanel.SetActive(true); 
+        FailPanel.SetActive(true);
+        
     }
     void InvokedFail()
     {
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void InvokedSprties2()
     {
         circlesParent.SetActive(true);
+        cikintiParent.SetActive(true);
     }
     public void DisableRigs()
     {
@@ -94,5 +97,9 @@ public class GameManager : MonoBehaviour
     {
         score += plus;
         scoreText.text = score.ToString();
+    }
+    public void CharPos(Transform chara)
+    {
+        chara.localPosition = Vector3.forward * 2.2f;
     }
 }
