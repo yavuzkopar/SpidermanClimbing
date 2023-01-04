@@ -21,13 +21,12 @@ public class Limb : MonoBehaviour
     float x = 0;
     float y = 0;
     RaycastHit hit;
-  //  SpriteRenderer spriteRenderer;
     Transform image;
     [SerializeField] Image imageChild;
 
+
     private void Start()
     {
-        //  spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         image = imageChild.transform.parent;
     }
     private void OnMouseUp()
@@ -45,14 +44,15 @@ public class Limb : MonoBehaviour
             {
                 GameManager.Instance.Star(transform);
                 holdingTarget.isTaken = true;
+                GameManager.Instance.PlaySound();
             }
         }
         else if (isInFinal)
         {
             GameManager.Instance.counter++;
             isInFinal = false;
-            //  transform.position = new Vector3(transform.position.x, GameManager.Instance.final.position.y+0.5f,0);
             transform.position = new Vector3(finalTransform.position.x, finalTransform.position.y, 0);
+            GameManager.Instance.PlaySound();
         }
         else
             GameManager.Instance.GameOverEvent?.Invoke();
@@ -63,19 +63,15 @@ public class Limb : MonoBehaviour
         Vector3 v = Input.mousePosition;
         transform.position = Camera.main.ScreenToWorldPoint(new Vector3(v.x, v.y, 20));
 
-                //transform.position = offset + hit.point;
-                ////  transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-                //x = transform.position.x;
-                //y = transform.position.y;
-                bounds = transform.position - allaign.position;
-                bounds = Vector2.ClampMagnitude(bounds, boundDistance);
-                x = Mathf.Clamp(x, allaign.position.x + bounds.x, allaign.position.x + bounds.x);
-                y = Mathf.Clamp(y, allaign.position.y + bounds.y, allaign.position.y + bounds.y);
+        bounds = transform.position - allaign.position;
+        bounds = Vector2.ClampMagnitude(bounds, boundDistance);
+        x = Mathf.Clamp(x, allaign.position.x + bounds.x, allaign.position.x + bounds.x);
+        y = Mathf.Clamp(y, allaign.position.y + bounds.y, allaign.position.y + bounds.y);
 
-                transform.position = new Vector3(x, y, 0);
+        transform.position = new Vector3(x, y, 0);
 
-            
-        
+
+
     }
     private void OnMouseDown()
     {
@@ -88,20 +84,11 @@ public class Limb : MonoBehaviour
         float z = transform.position.z - Camera.main.transform.position.z;
         Vector3 v = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y, 0));
         image.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-     //   spriteRenderer.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(v.x, v.y, z * 0.75f));
         if (holdingTarget != null)
         {
-        //    spriteRenderer.color = LerpedColor(holdingTarget.timer * 0.1f);
-          //  image.color = LerpedColor(holdingTarget.timer * 0.1f);
-            imageChild.fillAmount =1- holdingTarget.timer * 0.1f;
+            imageChild.fillAmount = 1 - holdingTarget.timer * 0.1f;
         }
-       
-    }
-    Color LerpedColor(float t)
-    {
-        Color a = Color.Lerp(Color.black, Color.red, t);
-        Color b = Color.Lerp(Color.red,Color.green, t);
-        return Color.Lerp(a, b, t);
+
     }
     Transform finalTransform;
     private void OnTriggerEnter(Collider other)
@@ -111,9 +98,9 @@ public class Limb : MonoBehaviour
             isIn = true;
             holdingTarget = other.GetComponent<CikintiTimer>();
             holdingTarget.SetTextMeshEnable(true);
-            
+
         }
-        else if(other.gameObject.CompareTag("final"))
+        else if (other.gameObject.CompareTag("final"))
         {
             isInFinal = true;
             finalTransform = other.transform;

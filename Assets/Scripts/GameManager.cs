@@ -24,12 +24,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] GameObject circlesParent;
     [SerializeField] GameObject cikintiParent;
+    AudioSource audioSource;
+    [SerializeField] AudioClip tutunma;
     private void Awake()
     {
         Instance = this;
         GameOverEvent.AddListener(InvokedFail);
         score = PlayerPrefs.GetInt("Score");
         ScoreUp(0);
+        audioSource= GetComponent<AudioSource>();
 
     }
     public void SetScore()
@@ -101,5 +104,14 @@ public class GameManager : MonoBehaviour
     public void CharPos(Transform chara)
     {
         chara.localPosition = Vector3.forward * 2.2f;
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.PlayDelayed(1);
+    }
+    public void PlaySound()
+    {
+        audioSource.PlayOneShot(tutunma);
     }
 }
